@@ -73,6 +73,16 @@ def get_vehicle_type():
 
 
 def vehicle_details():
+    """
+    Get vehicle details from the user.
+    """
+    print("Thank you now we need to get your vehicle details.\n")
+    make = details_validation_str("Please enter the make of your vehicle?.\n")
+    model = details_validation_str("Please enter the model ?.\n")
+    year = details_validation_int("What year is your vehicle?.\n")
+    engine_size = details_validation_int("What size engine has your vehicle got?.\n")
+     
+    return vehicle(make, model, year, engine_size)
 
 
 def calculate_insurance(p, v):   
@@ -83,3 +93,6 @@ def calculate_insurance(p, v):
 p = personal_details()
 v = vehicle_details()
 calculate_insurance(p, v)
+
+
+personal_details()
