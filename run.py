@@ -7,7 +7,13 @@ class person:
         self.no_claim_bonus = no_claim_bonus
         self.penalty_points = penalty_points
 
-
+class vehicle:
+    def __init__(self, make, model, year, engine_size):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.engine_size = engine_size
+       
 
 def personal_details():
     """
