@@ -1,4 +1,15 @@
-def get_personal_details():
+class person:
+    def __init__(self, f_name, l_name, address, age, no_claim_bonus, penalty_points):
+        self.f_name = f_name
+        self.l_name = l_name
+        self.address = address
+        self.age = age
+        self.no_claim_bonus = no_claim_bonus
+        self.penalty_points = penalty_points
+
+
+
+def personal_details():
     """
     Get personal details from the user.
     """
@@ -7,14 +18,10 @@ def get_personal_details():
     f_name = details_validation_str("Please enter your first name ?.\n")
     l_name = details_validation_str("Please enter your last name ?.\n")
     address = details_validation_str("Do you live in the city or county ?.\n")
-      
     age = details_validation_int("Please enter your age ?.\n")
     no_claim_bonus = details_validation_int("How many years no claim bonus do you have ?.\n")
-    penalty_points = details_validation_int("How many penalty points do you have ?.\n")
-        
-        
-    get_vehicle_type()
-
+    penalty_points = details_validation_int("How many penalty points do you have ?.\n")   
+    return person(f_name, l_name, address, age, no_claim_bonus, penalty_points)
 
 def details_validation_int(message):
     """
@@ -22,19 +29,15 @@ def details_validation_int(message):
     """
     valid_input = False
     user_input_num = 0
-    
     while valid_input == False:
         user_input_num = input(message)
         try:
             int(user_input_num)
             valid_input = True
-
         except ValueError:
             print("Invalid option please enter a number.")     
 
     return user_input_num
-
-
 
 def details_validation_str(message):
     """
@@ -42,13 +45,11 @@ def details_validation_str(message):
     """
     valid_input = False
     user_input_str = 0
-    
     while valid_input == False:
         user_input_str = input(message)
         try:
             int(user_input_str)
             print("Invalid option please enter a number.")
-
         except ValueError:    
             valid_input = True
     
@@ -65,4 +66,14 @@ def get_vehicle_type():
     print("Option 3 for motorbike.")
 
 
-get_personal_details()
+def vehicle_details():
+
+
+def calculate_insurance(p, v):   
+
+
+
+
+p = personal_details()
+v = vehicle_details()
+calculate_insurance(p, v)
