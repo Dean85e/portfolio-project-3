@@ -1,11 +1,12 @@
 class person:
-    def __init__(self, f_name, l_name, address, age, no_claim_bonus, penalty_points):
+    def __init__(self, f_name, l_name, address, age, ncb, p_point):
         self.f_name = f_name
         self.l_name = l_name
         self.address = address
         self.age = age
-        self.no_claim_bonus = no_claim_bonus
-        self.penalty_points = penalty_points
+        self.ncb = ncb
+        self.p_point = p_point
+
 
 class vehicle:
     def __init__(self, make, model, year, engine_size):
@@ -13,7 +14,7 @@ class vehicle:
         self.model = model
         self.year = year
         self.engine_size = engine_size
-       
+
 
 def personal_details():
     """
@@ -21,13 +22,14 @@ def personal_details():
     """
     print("Welcome to python insurances.")
     print("Please proceed for an insurance quote.\n")
-    f_name = details_validation_str("Please enter your first name ?.\n")
-    l_name = details_validation_str("Please enter your last name ?.\n")
-    address = details_validation_str("Do you live in the city or county ?.\n")
+    f_name = details_validation_str("Please enter your first name?.\n")
+    l_name = details_validation_str("Please enter your last name?.\n")
+    address = details_validation_str("Do you live in the city or county?.\n")
     age = details_validation_int("Please enter your age ?.\n")
-    no_claim_bonus = details_validation_int("How many years no claim bonus do you have ?.\n")
-    penalty_points = details_validation_int("How many penalty points do you have ?.\n")   
-    return person(f_name, l_name, address, age, no_claim_bonus, penalty_points)
+    ncb = details_validation_int("How many years NCB do you have?.\n")
+    p_point = details_validation_int("How many penalty points do you have?.\n")
+    return person(f_name, l_name, address, age, ncb, p_point)
+
 
 def details_validation_int(message):
     """
@@ -41,9 +43,10 @@ def details_validation_int(message):
             int(user_input_num)
             valid_input = True
         except ValueError:
-            print("Invalid option please enter a number.")     
+            print("Invalid option please enter a number.")
 
     return user_input_num
+
 
 def details_validation_str(message):
     """
@@ -55,10 +58,9 @@ def details_validation_str(message):
         user_input_str = input(message)
         try:
             int(user_input_str)
-            print("Invalid option please enter a number.")
-        except ValueError:    
+            print("Invalid input! please try again.")
+        except ValueError:
             valid_input = True
-    
     return user_input_str
 
 
@@ -80,19 +82,24 @@ def vehicle_details():
     make = details_validation_str("Please enter the make of your vehicle?.\n")
     model = details_validation_str("Please enter the model ?.\n")
     year = details_validation_int("What year is your vehicle?.\n")
-    engine_size = details_validation_int("What size engine has your vehicle got?.\n")
-     
+    engine_size = details_validation_int("Enter vehicle engine size?.\n")
     return vehicle(make, model, year, engine_size)
 
 
-def calculate_insurance(p, v):   
+def calculate_insurance(p, v):
+    """
+    Function to calculate insurance premium.
+    """
+    print("Your insurance quote is as follows")
 
 
+def main():
+    """
+    Main function to run the application
+    """
+    p = personal_details()
+    v = vehicle_details()
+    calculate_insurance(p, v)
 
 
-p = personal_details()
-v = vehicle_details()
-calculate_insurance(p, v)
-
-
-personal_details()
+main()
