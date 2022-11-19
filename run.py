@@ -72,6 +72,24 @@ def get_vehicle_type():
     print("Option 1 for cars.")
     print("Option 2 for trucks.")
     print("Option 3 for motorbike.")
+    while True:
+        vehicle_type = input("Please select your vehicle type.\n")
+        try:
+            vehicle_type = int(vehicle_type)
+        except ValueError:
+            print("Invalid please choose a number from the menu")
+          
+        if vehicle_type == 1:
+            print("Your vehicle is a car")
+            break
+        elif vehicle_type == 2:
+            print("Your vehicle is a truck")
+            break
+        elif vehicle_type == 3:
+            print("Your vehicle is a motorbike")
+            break
+        else:
+            print("Invalid input please choose a number from the menu")    
 
 
 def vehicle_details():
@@ -98,6 +116,7 @@ def main():
     Main function to run the application
     """
     p = personal_details()
+    get_vehicle_type()
     v = vehicle_details()
     calculate_insurance(p, v)
 
