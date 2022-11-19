@@ -24,7 +24,13 @@ def personal_details():
     print("Please proceed for an insurance quote.\n")
     f_name = details_validation_str("Please enter your first name?.\n")
     l_name = details_validation_str("Please enter your last name?.\n")
-    address = details_validation_str("Do you live in the city or county?.\n")
+    while True:
+        address = input("Do you live in the city or county?.\n")
+        if address.lower() == "city" or address.lower() == "county":
+            address = str(address)
+            break
+        else:
+            print("Please choose city or county")
     age = details_validation_int("Please enter your age ?.\n")
     ncb = details_validation_int("How many years NCB do you have?.\n")
     p_point = details_validation_int("How many penalty points do you have?.\n")
@@ -37,14 +43,13 @@ def details_validation_int(message):
     """
     valid_input = False
     user_input_num = 0
-    while valid_input == False:
+    while valid_input is False:
         user_input_num = input(message)
         try:
             int(user_input_num)
             valid_input = True
         except ValueError:
             print("Invalid option please enter a number.")
-
     return user_input_num
 
 
@@ -54,7 +59,7 @@ def details_validation_str(message):
     """
     valid_input = False
     user_input_str = 0
-    while valid_input == False:
+    while valid_input is False:
         user_input_str = input(message)
         try:
             int(user_input_str)
@@ -68,17 +73,16 @@ def get_vehicle_type():
     """
     Get vehicle type from the user.
     """
-    print("Please select a vehicle category:")
+    print("Please select a vehicle category:\n")
     print("Option 1 for cars.")
     print("Option 2 for trucks.")
-    print("Option 3 for motorbike.")
+    print("Option 3 for motorbike.\n")
     while True:
         vehicle_type = input("Please select your vehicle type.\n")
         try:
             vehicle_type = int(vehicle_type)
         except ValueError:
             print("Invalid please choose a number from the menu")
-          
         if vehicle_type == 1:
             print("Your vehicle is a car")
             break
@@ -89,7 +93,7 @@ def get_vehicle_type():
             print("Your vehicle is a motorbike")
             break
         else:
-            print("Invalid input please choose a number from the menu")    
+            print("Invalid input please choose a number from the menu")
 
 
 def vehicle_details():
