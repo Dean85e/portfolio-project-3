@@ -98,6 +98,7 @@ def get_vehicle_type():
             break
         else:
             print("Invalid input please choose a number from the menu\n")
+    return vehicle_type
 
 
 def vehicle_details():
@@ -108,25 +109,33 @@ def vehicle_details():
     make = details_validation_str("Please enter the make of your vehicle?.\n")
     model = details_validation_str("Please enter the model ?.\n")
     year = details_validation_int("What year is your vehicle?.\n")
-    engine_size = details_validation_int("Enter vehicle engine size?.\n")
+    engine_size = float(input("Enter vehicle engine size?.\n"))
     return vehicle(make, model, year, engine_size)
 
 
-def calculate_insurance(p, v):
+def calculate_insurance(driver, motor, vehicle_choice):
     """
     Function to calculate insurance premium.
     """
-    print("Your insurance quote is as follows")
+    print("Your insurance quote is as follows...\n")
+    price = 0
+    if vehicle_choice == 1:
+        price = 350
+    elif vehicle_choice == 2:
+        price = 1000
+    elif vehicle_choice == 3:
+        price = 250
+    print(price)
 
 
 def main():
     """
     Main function to run the application
     """
-    p = personal_details()
-    get_vehicle_type()
-    v = vehicle_details()
-    calculate_insurance(p, v)
+    driver = personal_details()
+    vehicle_choice = get_vehicle_type()
+    motor = vehicle_details()
+    calculate_insurance(driver, motor, vehicle_choice)
 
 
 main()
