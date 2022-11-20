@@ -79,7 +79,7 @@ def get_vehicle_type():
     """
     print("Please select a vehicle category:\n")
     print("Option 1 for cars.")
-    print("Option 2 for trucks.")
+    print("Option 2 for vans.")
     print("Option 3 for motorbike.\n")
     while True:
         vehicle_type = input("Please select your vehicle type.\n")
@@ -91,7 +91,7 @@ def get_vehicle_type():
             print("Your vehicle is a car\n")
             break
         elif vehicle_type == 2:
-            print("Your vehicle is a truck\n")
+            print("Your vehicle is a van\n")
             break
         elif vehicle_type == 3:
             print("Your vehicle is a motorbike\n")
@@ -118,14 +118,30 @@ def calculate_insurance(driver, motor, vehicle_choice):
     Function to calculate insurance premium.
     """
     print("Your insurance quote is as follows...\n")
-    price = 0
+    vehicle_base_price = 0
     if vehicle_choice == 1:
-        price = 350
+        vehicle_base_price = 350
     elif vehicle_choice == 2:
-        price = 1000
+        vehicle_base_price = 450
     elif vehicle_choice == 3:
-        price = 250
-    print(price)
+        vehicle_base_price = 250
+    if int(motor.year) >= 2000 or int(motor.year) <= 2010:
+        vehicle_age = vehicle_base_price / 30 * 100
+    elif int(motor.year) > 2010 or int(motor.year) <= 2015:
+        vehicle_age = vehicle_base_price / 15 * 100
+    elif int(motor.year) > 2015 or int(motor.year) <= 2022:
+        vehicle_age = vehicle_base_price / 5 * 100
+    if motor.engine_size >= 0.5 or motor.engine_size <= 1.0:
+        engine_cc = vehicle_age / 5 * 100
+    elif motor.engine_size > 1.0 or motor.engine_size <= 1.5:
+        engine_cc = vehicle_age / 10 * 100
+    elif motor.engine_size > 1.5 or motor.engine_size <= 2.0:
+        engine_cc = vehicle_age / 15 * 100
+    elif motor.engine_size > 2.0 or motor.engine_size <= 2.5:
+        engine_cc = vehicle_age / 25 * 100
+
+        
+    print(engine_cc)
 
 
 def main():
