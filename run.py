@@ -65,7 +65,11 @@ def details_validation_str(message):
             int(user_input_str)
             print("Invalid input! please try again.")
         except ValueError:
-            valid_input = True
+            if len(user_input_str.strip()) == 0:
+                valid_input = False
+                print("Please input")
+            else:
+                valid_input = True
     return user_input_str
 
 
@@ -82,18 +86,18 @@ def get_vehicle_type():
         try:
             vehicle_type = int(vehicle_type)
         except ValueError:
-            print("Invalid please choose a number from the menu")
+            print("")
         if vehicle_type == 1:
-            print("Your vehicle is a car")
+            print("Your vehicle is a car\n")
             break
         elif vehicle_type == 2:
-            print("Your vehicle is a truck")
+            print("Your vehicle is a truck\n")
             break
         elif vehicle_type == 3:
-            print("Your vehicle is a motorbike")
+            print("Your vehicle is a motorbike\n")
             break
         else:
-            print("Invalid input please choose a number from the menu")
+            print("Invalid input please choose a number from the menu\n")
 
 
 def vehicle_details():
