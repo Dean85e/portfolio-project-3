@@ -118,46 +118,69 @@ def calculate_insurance(driver, motor, vehicle_choice):
     Function to calculate insurance premium.
     """
     print("Your insurance quote is as follows...\n")
-    driver_base_price = 0
-    vehicle_base_price = 0
+    young_driver_premium = 750
+    base_price = 0
+    vehicle_year = 0
+    vehicle_cc = 0
+    driver_age = 0
+    ncb_discount = 0
+    pen_point = 0
     # Vehicle information
     if vehicle_choice == 1:
-        vehicle_base_price = 100
+        base_price = 350
     elif vehicle_choice == 2:
-        vehicle_base_price = 125
+        base_price = 450
     elif vehicle_choice == 3:
-        vehicle_base_price = 50
+        base_price = 250
     # Vehicle year calculations
-    if int(motor.year) >= 2000 or int(motor.year) <= 2010:
-        vehicle_base_price = vehicle_base_price / 15 * 100
-    elif int(motor.year) > 2010 or int(motor.year) <= 2015:
-        vehicle_base_price = vehicle_base_price / 10 * 100
-    elif int(motor.year) > 2015 or int(motor.year) <= 2022:
-        vehicle_base_price = vehicle_base_price / 5 * 100
+    if int(motor.year) >= 2000 and int(motor.year) <= 2010:
+        vehicle_year = base_price * (90 / 100) + 200
+    elif int(motor.year) > 2010 and int(motor.year) <= 2015:
+        vehicle_year = base_price * (60/100)
+    elif int(motor.year) > 2015 and int(motor.year) <= 2022:
+        vehicle_year = base_price * (20/100)
     # Engine capacity calculations
-    if motor.engine_size >= 0.5 or vehicle_base_price <= 1.0:
-        vehicle_base_price = vehicle_base_price / 3 * 100
-    elif motor.engine_size > 1.0 or vehicle_base_price <= 1.5:
-        vehicle_base_price = vehicle_base_price / 5 * 100
-    elif motor.engine_size > 1.5 or vehicle_base_price <= 2.0:
-        vehicle_base_price = vehicle_base_price / 7 * 100
-    elif vehicle_base_price > 2.0 or vehicle_base_price <= 2.5:
-        vehicle_base_price = vehicle_base_price / 10 * 100
+    if motor.engine_size >= 0.5 and motor.engine_size <= 1.0:
+        vehicle_cc = base_price * (30/100)
+    elif motor.engine_size > 1.0 and motor.engine_size <= 1.5:
+        vehicle_cc = base_price * (40/100)
+    elif motor.engine_size > 1.5 and motor.engine_size <= 2.0:
+        vehicle_cc = base_price * (70/100)
+    elif motor.engine_size > 2.0 and motor.engine_size <= 2.5:
+        vehicle_cc = base_price * (90/100) + 200
     # Driver age calculations
-    if int(driver.age) >= 18 or int(driver.age) <= 21:
-        driver_base_price = vehicle_base_price / 25 * 100
-    elif int(driver.age) > 21 or int(driver.age) <= 30:
-        driver_base_price = vehicle_base_price / 15 * 100
-    elif int(driver.age) > 30 or int(driver.age) <= 40:
-        driver_base_price = vehicle_base_price / 10 * 100
-    elif int(driver.age) > 40 or int(driver.age) <= 50:
-        driver_base_price = vehicle_base_price / 5 * 100
-    elif int(driver.age) > 50 or int(driver.age) <= 60:
-        driver_base_price = vehicle_base_price / 2 * 100
+    if int(driver.age) >= 18 and int(driver.age) <= 21:
+        driver_age = base_price * (90/100) + young_driver_premium
+    elif int(driver.age) > 21 and int(driver.age) <= 30:
+        driver_age = base_price * (70/100)
+    elif int(driver.age) > 30 and int(driver.age) <= 40:
+        driver_age = base_price * (45/100)
+    elif int(driver.age) > 40 and int(driver.age) <= 50:
+        driver_age = base_price * (20/100)
+    elif int(driver.age) > 50 and int(driver.age) <= 60:
+        driver_age = base_price * (10/100)
     elif int(driver.age) > 60:
-        driver_base_price = vehicle_base_price / 7 * 100
-
-    print(driver_base_price)
+        driver_age = base_price * (20/100)
+    # Penalty points charge.
+    if int(driver.p_point) >= 1 and int(driver.p_point) <= 3:
+        pen_point = base_price * (20/100)
+    elif int(driver.p_point) > 3 and int(driver.p_point) <= 6:
+        pen_point = base_price * (40/100)
+    elif int(driver.p_point) > 6 and int(driver.p_point) <= 12:
+        pen_point = base_price * (80/100)
+    # No claim bonus discounts.
+    if driver.ncb == 5:
+        ncb_discount = base_price * (50/100)
+    elif driver.ncb == 4:
+        ncb_discount = base_price * (40/100)
+    elif driver.ncb == 3:
+        ncb_discount = base_price * (30/100)
+    elif driver.ncb == 2:
+        ncb_discount = base_price * (20/100)
+    elif driver.ncb == 1:
+        ncb_discount = base_price * (10/100)
+    total = (vehicle_year + vehicle_cc + driver_age + base_price + pen_point)
+    print(total - ncb_discount)
 
 
 def main():
