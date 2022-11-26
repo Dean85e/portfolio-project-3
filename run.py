@@ -1,4 +1,12 @@
-class person:
+"""
+Insurance calculator
+"""
+
+
+class Person:
+    """
+    Class for driver.
+    """
     def __init__(self, f_name, l_name, address, age, ncb, p_point):
         self.f_name = f_name
         self.l_name = l_name
@@ -8,7 +16,10 @@ class person:
         self.p_point = p_point
 
 
-class vehicle:
+class Vehicle:
+    """
+    Class for vehicle
+    """
     def __init__(self, make, model, year, engine_size):
         self.make = make
         self.model = model
@@ -34,7 +45,7 @@ def personal_details():
     age = details_validation_int("Please enter your age ?.\n")
     ncb = details_validation_int("How many years NCB do you have?.\n")
     p_point = details_validation_int("How many penalty points do you have?.\n")
-    return person(f_name, l_name, address, age, ncb, p_point)
+    return Person(f_name, l_name, address, age, ncb, p_point)
 
 
 def details_validation_int(message):
@@ -110,14 +121,13 @@ def vehicle_details():
     model = details_validation_str("Please enter the model ?.\n")
     year = details_validation_int("What year is your vehicle?.\n")
     engine_size = float(input("Enter vehicle engine size?.\n"))
-    return vehicle(make, model, year, engine_size)
+    return Vehicle(make, model, year, engine_size)
 
 
 def calculate_base_price(vehicle_choice):
     """
-    Function to calculate insurance premium.
+    Function to calculate the base price of the insurance premium.
     """
-    print("Your insurance quote is as follows...\n")
     base_price = 0
     # Vehicle information
     if vehicle_choice == 1:
@@ -130,19 +140,19 @@ def calculate_base_price(vehicle_choice):
 
 
 def calculate_vehicle_age(motor, base_price):
-    """ Vehicle year calculations """
-    vehicle_year = 0
+    """ function to get Vehicle year """
+    vehicle_yr = 0
     if int(motor.year) >= 2000 and int(motor.year) <= 2010:
-        vehicle_year = base_price * (90 / 100) + 200
+        vehicle_yr = base_price * (90 / 100) + 200
     elif int(motor.year) > 2010 and int(motor.year) <= 2015:
-        vehicle_year = base_price * (60/100)
+        vehicle_yr = base_price * (60/100)
     elif int(motor.year) > 2015 and int(motor.year) <= 2022:
-        vehicle_year = base_price * (20/100)
-    return vehicle_year
+        vehicle_yr = base_price * (20/100)
+    return vehicle_yr
 
 
 def calculate_vehicle_cc(motor, base_price):
-    """Engine capacity calculations"""
+    """function to get Engine capacity of vehicle"""
     vehicle_cc = 0
     if motor.engine_size >= 0.5 and motor.engine_size <= 1.0:
         vehicle_cc = base_price * (30/100)
@@ -156,7 +166,7 @@ def calculate_vehicle_cc(motor, base_price):
 
 
 def calculate_driver_age(driver, base_price):
-    """Driver age calculations"""
+    """function to get Driver age which affects premium"""
     driver_age = 0
     young_driver_premium = 750
     if int(driver.age) >= 18 and int(driver.age) <= 21:
@@ -175,31 +185,52 @@ def calculate_driver_age(driver, base_price):
 
 
 def calculate_pen_points(driver, base_price):
-    """Penalty points charge."""
-    pen_point = 0
+    """function to apply penalty points charge to premium."""
+    points = 0
     if int(driver.p_point) >= 1 and int(driver.p_point) <= 3:
-        pen_point = base_price * (20/100)
+        points = base_price * (20/100)
     elif int(driver.p_point) > 3 and int(driver.p_point) <= 6:
-        pen_point = base_price * (40/100)
+        points = base_price * (40/100)
     elif int(driver.p_point) > 6 and int(driver.p_point) <= 12:
-        pen_point = base_price * (80/100)
-    return pen_point
+        points = base_price * (80/100)
+    return points
 
 
 def no_claim_bonus(driver, base_price):
-    """No claim bonus discounts."""
-    ncb_discount = 0
+    """function to calculate no claim bonus discount."""
+    ncb = 0
     if driver.ncb == 5:
-        ncb_discount = base_price * (50/100)
+        ncb = base_price * (50/100)
     elif driver.ncb == 4:
-        ncb_discount = base_price * (40/100)
+        ncb = base_price * (40/100)
     elif driver.ncb == 3:
-        ncb_discount = base_price * (30/100)
+        ncb = base_price * (30/100)
     elif driver.ncb == 2:
-        ncb_discount = base_price * (20/100)
+        ncb = base_price * (20/100)
     elif driver.ncb == 1:
-        ncb_discount = base_price * (10/100)
-    return ncb_discount
+        ncb = base_price * (10/100)
+    return ncb
+
+
+def driver_address(driver, base_price):
+    """Function to add to premium if customer lives in the city"""
+    address = 0
+    if driver.address.lower() == "city":
+        address = base_price + 300
+    else:
+        address = base_price
+    return address
+
+
+def add(base_price, vehicle_yr, vehicle_cc, driver_age, points, ncb, address):
+    """
+    Function to determine the total premium offered to the customer.
+    """
+    print("Your insurance quote is as follows...\n")
+    total1 = base_price + vehicle_yr + vehicle_cc
+    total2 = driver_age + points + address - ncb
+    total = total1 + total2
+    return total
 
 
 def main():
@@ -216,6 +247,7 @@ def main():
     calculate_driver_age(driver, base_price)
     calculate_pen_points(driver, base_price)
     no_claim_bonus(driver, base_price)
+    driver_address(driver, base_price)
 
 
 main()
