@@ -222,15 +222,22 @@ def driver_address(driver, base_price):
     return address
 
 
-def add(base_price, vehicle_yr, vehicle_cc, driver_age, points, ncb, address):
+def add(base_price, v_age, v_cc, d_age, pp, cb, d_ad):
     """
     Function to determine the total premium offered to the customer.
     """
     print("Your insurance quote is as follows...\n")
-    total1 = base_price + vehicle_yr + vehicle_cc
-    total2 = driver_age + points + address - ncb
+    total1 = base_price + v_age + v_cc
+    total2 = d_age + pp + d_ad - cb
     total = total1 + total2
     return total
+
+
+def quote(final, driver, vehicle_choice, motor):
+    """
+    Function to display quote information to user.
+    """
+    print(driver.f_name)
 
 
 def main():
@@ -242,12 +249,22 @@ def main():
     motor = vehicle_details()
     base_price = calculate_base_price(vehicle_choice)
     calculate_base_price(vehicle_choice)
+    v_age = calculate_vehicle_age(motor, base_price)
     calculate_vehicle_age(motor, base_price)
+    v_cc = calculate_vehicle_cc(motor, base_price)
     calculate_vehicle_cc(motor, base_price)
+    d_age = calculate_driver_age(driver, base_price)
     calculate_driver_age(driver, base_price)
+    pp = calculate_pen_points(driver, base_price)
     calculate_pen_points(driver, base_price)
+    cb = no_claim_bonus(driver, base_price)
     no_claim_bonus(driver, base_price)
+    d_ad = driver_address(driver, base_price)
     driver_address(driver, base_price)
+    add(base_price, v_age, v_cc, d_age, pp, cb, d_ad)
+    final = add(base_price, v_age, v_cc, d_age, pp, cb, d_ad)
+    quote(final, driver, vehicle_choice, motor)
 
 
 main()
+
