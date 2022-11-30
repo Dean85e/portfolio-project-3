@@ -44,13 +44,8 @@ def personal_details():
     print("Please proceed for an insurance quote.\n")
     f_name = details_validation_str("Please enter your first name?.\n")
     l_name = details_validation_str("Please enter your last name?.\n")
-    while True:
-        address = input("Do you live in the city or county?.\n")
-        if address.lower() == "city" or address.lower() == "county":
-            address = str(address)
-            break
-        else:
-            print("Please choose city or county")
+    location_choices = ['City', 'County']
+    address = validate_input_choice(location_choices, "Do you live in the city or county?\n")
     age = details_validation_int("Please enter your age ?.\n")
     ncb = details_validation_int("How many years NCB do you have?.\n")
     p_point = details_validation_int("How many penalty points do you have?.\n")
@@ -91,7 +86,7 @@ def validate_input_choice(valid_choices, message):
 
 def details_validation_float(message):
     """
-    Input validation of integer personal details.
+    Input validation of float for engine size.
     """
     valid_input = False
     user_input_num = 0
@@ -101,7 +96,8 @@ def details_validation_float(message):
             float(user_input_num)
             valid_input = True
         except ValueError:
-            print("Invalid option please enter a number.")
+            print("Invalid option please enter a decimal number.\n")
+            print("Example 1.0 , 1.5 , 2.0")
     return user_input_num
 
 
