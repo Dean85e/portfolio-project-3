@@ -66,7 +66,7 @@ def details_validation_int(message):
 
 def validate_input_choice(ValidChoices, message):
     """
-    'ValidChoices' is going to be an array, 
+    'ValidChoices' is going to be an array,
      anything inside the array can be considerd a valid choice.
     """
     valid_input = False
@@ -78,6 +78,22 @@ def validate_input_choice(ValidChoices, message):
                 valid_input = True
                 return user_input
         print("Invalid input! please try again.")
+
+
+def details_validation_float(message):
+    """
+    Input validation of integer personal details.
+    """
+    valid_input = False
+    user_input_num = 0
+    while valid_input is False:
+        user_input_num = input(message)
+        try:
+            float(user_input_num)
+            valid_input = True
+        except ValueError:
+            print("Invalid option please enter a number.")
+    return user_input_num
 
 
 def details_validation_str(message):
