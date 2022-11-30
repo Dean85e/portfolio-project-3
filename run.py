@@ -15,6 +15,66 @@ class Person:
         self.ncb = ncb
         self.p_point = p_point
 
+    # Get address increase / discount
+    def get_address_modifier(self):
+        """Function to add to premium if customer lives in the city"""
+        price_modifier = 0
+        if self.address.lower() == "city":
+            price_modifier = 1.15
+        else:
+            price_modifier = 0.90
+        return price_modifier
+
+    # Get no claims bonus increase / discount
+    def get_ncb_modifier(self):
+        """function to calculate no claim bonus discount."""
+        price_modifier = 0
+        if self.ncb == 5:
+            price_modifier = 0.60
+        elif self.ncb == 4:
+            price_modifier = 0.70
+        elif self.ncb == 3:
+            price_modifier = 0.80
+        elif self.ncb == 2:
+            price_modifier = 0.80
+        elif self.ncb == 1:
+            price_modifier = 0.90
+        else:
+            price_modifier = 1.15
+        return price_modifier
+
+    # Get penalty points increase / discount
+    def get_pen_points_modifier(self):
+        """function to apply penalty points charge to premium."""
+        price_modifier = 0
+        if int(self.p_point) >= 1 and int(self.p_point) <= 3:
+            price_modifier = 1.30
+        elif int(self.p_point) > 3 and int(self.p_point) <= 6:
+            price_modifier = 1.60
+        elif int(self.p_point) > 6 and int(self.p_point) <= 12:
+            price_modifier = 1.90
+        else:
+            price_modifier = 0.9
+        return price_modifier
+
+    # Get persons age increase / discount
+    def get_age_modifier(self):
+        """function to get self age which affects premium"""
+        price_modifier = 0
+        if int(self.age) >= 18 and int(self.age) <= 21:
+            price_modifier = 1.5
+        elif int(self.age) > 21 and int(self.age) <= 30:
+            price_modifier = 1.1
+        elif int(self.age) > 30 and int(self.age) <= 40:
+            price_modifier = 1
+        elif int(self.age) > 40 and int(self.age) <= 50:
+            price_modifier = 0.9
+        elif int(self.age) > 50 and int(self.age) <= 60:
+            price_modifier = 0.85
+        elif int(self.age) > 60:
+            price_modifier = 0.95
+        return price_modifier    
+
 
 class Vehicle:
     """
@@ -63,6 +123,7 @@ class Vehicle:
         elif int(self.year) > 2015 and int(self.year) <= 2022:
             price_modifier = 1
         return price_modifier
+
 
 class InsuranceCalculator:
     """
@@ -172,81 +233,6 @@ def get_vehicle_details():
     year = details_validation_int("What year is your vehicle?.\n")
     engine_size = float(details_validation_float("Enter vehicle engine size?.\n"))
     return Vehicle(vehicle_type, make, model, year, engine_size)
-
-
-def calculate_driver_age(driver, base_price):
-    """function to get Driver age which affects premium"""
-    driver_age = 0
-    young_driver_premium = 750
-    if int(driver.age) >= 18 and int(driver.age) <= 21:
-        driver_age = base_price * (90/100) + young_driver_premium
-    elif int(driver.age) > 21 and int(driver.age) <= 30:
-        driver_age = base_price * (70/100)
-    elif int(driver.age) > 30 and int(driver.age) <= 40:
-        driver_age = base_price * (45/100)
-    elif int(driver.age) > 40 and int(driver.age) <= 50:
-        driver_age = base_price * (20/100)
-    elif int(driver.age) > 50 and int(driver.age) <= 60:
-        driver_age = base_price * (10/100)
-    elif int(driver.age) > 60:
-        driver_age = base_price * (20/100)
-    return driver_age
-
-
-def calculate_pen_points(driver, base_price):
-    """function to apply penalty points charge to premium."""
-    points = 0
-    if int(driver.p_point) >= 1 and int(driver.p_point) <= 3:
-        points = base_price * (20/100)
-    elif int(driver.p_point) > 3 and int(driver.p_point) <= 6:
-        points = base_price * (40/100)
-    elif int(driver.p_point) > 6 and int(driver.p_point) <= 12:
-        points = base_price * (80/100)
-    return points
-
-
-def no_claim_bonus(driver, base_price):
-    """function to calculate no claim bonus discount."""
-    ncb = 0
-    if driver.ncb == 5:
-        ncb = base_price * (50/100)
-    elif driver.ncb == 4:
-        ncb = base_price * (40/100)
-    elif driver.ncb == 3:
-        ncb = base_price * (30/100)
-    elif driver.ncb == 2:
-        ncb = base_price * (20/100)
-    elif driver.ncb == 1:
-        ncb = base_price * (10/100)
-    return ncb
-
-
-def driver_address(driver, base_price):
-    """Function to add to premium if customer lives in the city"""
-    address = 0
-    if driver.address.lower() == "city":
-        address = base_price + 300
-    else:
-        address = base_price
-    return address
-
-
-def add(base_price, v_age, v_cc, d_age, pp, cb, d_ad):
-    """
-    Function to determine the total premium offered to the customer.
-    """
-    print("Your insurance quote is as follows...\n")
-    total1 = base_price + v_age + v_cc
-    total2 = d_age + pp + d_ad - cb
-    total = total1 + total2
-    return total
-
-
-def quote(final, driver, vehicle_choice, motor):
-    """
-    Function to display quote information to user.
-    """
-    print(driver.f_name)
 
 
 def main():
