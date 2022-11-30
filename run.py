@@ -26,6 +26,17 @@ class Vehicle:
         self.year = year
         self.engine_size = engine_size
 
+    def get_base_price(self):
+        """
+        Get a base price from the vehicle type
+        """
+        if self.vehicle_type == 1:
+            return 350
+        elif self.vehicle_type == 2:
+            return 450
+        elif self.vehicle_type == 3:
+            return 250
+
 
 class InsuranceCalculator:
     """
