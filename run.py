@@ -14,7 +14,7 @@ class Person:
         self.age = age
         self.ncb = ncb
         self.p_point = p_point
-
+    
 
 class Vehicle:
     """
@@ -62,6 +62,22 @@ def details_validation_int(message):
         except ValueError:
             print("Invalid option please enter a number.")
     return user_input_num
+
+
+def validate_input_choice(ValidChoices, message):
+    """
+    'ValidChoices' is going to be an array, 
+     anything inside the array can be considerd a valid choice.
+    """
+    valid_input = False
+    user_input = ""
+    while valid_input is False:
+        user_input = input(message)
+        for choice in ValidChoices:
+            if choice.lower() == user_input.lower():
+                valid_input = True
+                return user_input
+        print("Invalid input! please try again.")
 
 
 def details_validation_str(message):
