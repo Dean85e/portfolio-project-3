@@ -14,7 +14,7 @@ class Person:
         self.age = age
         self.ncb = ncb
         self.p_point = p_point
-    
+
 
 class Vehicle:
     """
@@ -25,6 +25,15 @@ class Vehicle:
         self.model = model
         self.year = year
         self.engine_size = engine_size
+
+
+class InsuranceCalculator:
+    """
+    Class for calculating insurance
+    """
+    def __init__(self, person, vehicle):
+        self.person = person
+        self.vehicle = vehicle
 
 
 def personal_details():
@@ -64,7 +73,7 @@ def details_validation_int(message):
     return user_input_num
 
 
-def validate_input_choice(ValidChoices, message):
+def validate_input_choice(valid_choices, message):
     """
     'ValidChoices' is going to be an array,
      anything inside the array can be considerd a valid choice.
@@ -73,7 +82,7 @@ def validate_input_choice(ValidChoices, message):
     user_input = ""
     while valid_input is False:
         user_input = input(message)
-        for choice in ValidChoices:
+        for choice in valid_choices:
             if choice.lower() == user_input.lower():
                 valid_input = True
                 return user_input
@@ -116,44 +125,20 @@ def details_validation_str(message):
     return user_input_str
 
 
-def get_vehicle_type():
-    """
-    Get vehicle type from the user.
-    """
-    print("Please select a vehicle category:\n")
-    print("Option 1 for cars.")
-    print("Option 2 for vans.")
-    print("Option 3 for motorbike.\n")
-    while True:
-        vehicle_type = input("Please select your vehicle type.\n")
-        try:
-            vehicle_type = int(vehicle_type)
-        except ValueError:
-            print("")
-        if vehicle_type == 1:
-            print("Your vehicle is a car\n")
-            break
-        elif vehicle_type == 2:
-            print("Your vehicle is a van\n")
-            break
-        elif vehicle_type == 3:
-            print("Your vehicle is a motorbike\n")
-            break
-        else:
-            print("Invalid input please choose a number from the menu\n")
-    return vehicle_type
-
-
-def vehicle_details():
+def get_vehicle_details():
     """
     Get vehicle details from the user.
     """
     print("Thank you now we need to get your vehicle details.\n")
+
+    valid_Vehicles = ['1', '2', '3']
+    vehicle_type = validate_input_choice(valid_Vehicles, "Please select a vehicle category:\nOption 1: Car\nOption 2: Van\n Option 3: Motorbike\n")
+
     make = details_validation_str("Please enter the make of your vehicle?.\n")
     model = details_validation_str("Please enter the model ?.\n")
     year = details_validation_int("What year is your vehicle?.\n")
-    engine_size = float(input("Enter vehicle engine size?.\n"))
-    return Vehicle(make, model, year, engine_size)
+    engine_size = float(details_validation_float("Enter vehicle engine size?.\n"))
+    return Vehicle(vehicle_type, make, model, year, engine_size)
 
 
 def calculate_base_price(vehicle_choice):
