@@ -73,19 +73,20 @@ class Person:
             price_modifier = 0.85
         elif int(self.age) > 60:
             price_modifier = 0.95
-        return price_modifier    
+        return price_modifier
 
 
 class Vehicle:
     """
     Class for vehicle
     """
-    def __init__(self, make, model, year, engine_size):
+    def __init__(self, vehicle_type, make, model, year, engine_size):
         self.vehicle_type = int(vehicle_type)
         self.make = make
         self.model = model
         self.year = year
         self.engine_size = engine_size
+
     # Get a base price from the vehicle type.
     def get_base_price(self):
         """
@@ -142,6 +143,7 @@ def personal_details():
     print("Please proceed for an insurance quote.\n")
     f_name = details_validation_str("Please enter your first name?.\n")
     l_name = details_validation_str("Please enter your last name?.\n")
+    # Array for valid address choices.
     location_choices = ['City', 'County']
     address = validate_input_choice(location_choices, "Do you live in the city or county?\n")
     age = details_validation_int("Please enter your age ?.\n")
@@ -150,6 +152,23 @@ def personal_details():
     return Person(f_name, l_name, address, age, ncb, p_point)
 
 
+def get_vehicle_details():
+    """
+    Get vehicle details from the user.
+    """
+    print("Thank you now we need to get your vehicle details.\n")
+    # Array for valid vehicles
+    valid_vehicles = ['1', '2', '3']
+    vehicle_type = validate_input_choice(valid_vehicles, "Please select a vehicle category:\nOption 1: Car\nOption 2: Van\n Option 3: Motorbike\n")
+
+    make = details_validation_str("Please enter the make of your vehicle?.\n")
+    model = details_validation_str("Please enter the model ?.\n")
+    year = details_validation_int("What year is your vehicle?.\n")
+    engine_size = float(details_validation_float("Enter vehicle engine size?.\n"))
+    return Vehicle(vehicle_type, make, model, year, engine_size)
+
+
+# Validation for numerical input
 def details_validation_int(message):
     """
     Input validation of integer personal details.
@@ -166,6 +185,7 @@ def details_validation_int(message):
     return user_input_num
 
 
+# validation for vehicle type & driver address
 def validate_input_choice(valid_choices, message):
     """
     'ValidChoices' is going to be an array,
@@ -182,6 +202,7 @@ def validate_input_choice(valid_choices, message):
         print("Invalid input! please try again.")
 
 
+# Validation for floating point input for engine size in cc.
 def details_validation_float(message):
     """
     Input validation of float for engine size.
@@ -199,6 +220,7 @@ def details_validation_float(message):
     return user_input_num
 
 
+# Validation for string input & strip function to check for empty strings.
 def details_validation_str(message):
     """
     Input validation of string personal details.
@@ -210,7 +232,7 @@ def details_validation_str(message):
         try:
             int(user_input_str)
             print("Invalid input! please try again.")
-        except ValueError:
+        except ValueError:  # Ensure user does not leave an input field blank.
             if len(user_input_str.strip()) == 0:
                 valid_input = False
                 print("Please input")
@@ -218,23 +240,7 @@ def details_validation_str(message):
                 valid_input = True
     return user_input_str
 
-
-def get_vehicle_details():
-    """
-    Get vehicle details from the user.
-    """
-    print("Thank you now we need to get your vehicle details.\n")
-
-    valid_Vehicles = ['1', '2', '3']
-    vehicle_type = validate_input_choice(valid_Vehicles, "Please select a vehicle category:\nOption 1: Car\nOption 2: Van\n Option 3: Motorbike\n")
-
-    make = details_validation_str("Please enter the make of your vehicle?.\n")
-    model = details_validation_str("Please enter the model ?.\n")
-    year = details_validation_int("What year is your vehicle?.\n")
-    engine_size = float(details_validation_float("Enter vehicle engine size?.\n"))
-    return Vehicle(vehicle_type, make, model, year, engine_size)
-
-
+# Main function
 def main():
     """
     Main function to run the application
@@ -261,5 +267,5 @@ def main():
     quote(final, driver, vehicle_choice, motor)
 
 
+# Main function call.
 main()
-
