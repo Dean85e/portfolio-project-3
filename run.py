@@ -21,11 +21,12 @@ class Vehicle:
     Class for vehicle
     """
     def __init__(self, make, model, year, engine_size):
+        self.vehicle_type = int(vehicle_type)
         self.make = make
         self.model = model
         self.year = year
         self.engine_size = engine_size
-
+    # Get a base price from the vehicle type.
     def get_base_price(self):
         """
         Get a base price from the vehicle type
@@ -37,6 +38,31 @@ class Vehicle:
         elif self.vehicle_type == 3:
             return 250
 
+    # Get Engine size discount / increase
+    def get_cc_modifier(self):
+        """function to get Engine capacity of vehicle"""
+        price_modifier = 0
+        if self.engine_size >= 0.5 and self.engine_size <= 1.0:
+            price_modifier = 0.7
+        elif self.engine_size > 1.0 and self.engine_size <= 1.5:
+            price_modifier = 1
+        elif self.engine_size > 1.5 and self.engine_size <= 2.0:
+            price_modifier = 1.25
+        elif self.engine_size > 2.0 and self.engine_size <= 2.5:
+            price_modifier = 1.60
+        return price_modifier
+
+    # Get Vehicle Age discount / increase
+    def get_age_modifier(self):
+        """ function to get Vehicle year """
+        price_modifier = 0
+        if int(self.year) >= 2000 and int(self.year) <= 2010:
+            price_modifier = 1.50
+        elif int(self.year) > 2010 and int(self.year) <= 2015:
+            price_modifier = 1.25
+        elif int(self.year) > 2015 and int(self.year) <= 2022:
+            price_modifier = 1
+        return price_modifier
 
 class InsuranceCalculator:
     """
@@ -146,47 +172,6 @@ def get_vehicle_details():
     year = details_validation_int("What year is your vehicle?.\n")
     engine_size = float(details_validation_float("Enter vehicle engine size?.\n"))
     return Vehicle(vehicle_type, make, model, year, engine_size)
-
-
-def calculate_base_price(vehicle_choice):
-    """
-    Function to calculate the base price of the insurance premium.
-    """
-    base_price = 0
-    # Vehicle information
-    if vehicle_choice == 1:
-        base_price = 350
-    elif vehicle_choice == 2:
-        base_price = 450
-    elif vehicle_choice == 3:
-        base_price = 250
-    return base_price
-
-
-def calculate_vehicle_age(motor, base_price):
-    """ function to get Vehicle year """
-    vehicle_yr = 0
-    if int(motor.year) >= 2000 and int(motor.year) <= 2010:
-        vehicle_yr = base_price * (90 / 100) + 200
-    elif int(motor.year) > 2010 and int(motor.year) <= 2015:
-        vehicle_yr = base_price * (60/100)
-    elif int(motor.year) > 2015 and int(motor.year) <= 2022:
-        vehicle_yr = base_price * (20/100)
-    return vehicle_yr
-
-
-def calculate_vehicle_cc(motor, base_price):
-    """function to get Engine capacity of vehicle"""
-    vehicle_cc = 0
-    if motor.engine_size >= 0.5 and motor.engine_size <= 1.0:
-        vehicle_cc = base_price * (30/100)
-    elif motor.engine_size > 1.0 and motor.engine_size <= 1.5:
-        vehicle_cc = base_price * (40/100)
-    elif motor.engine_size > 1.5 and motor.engine_size <= 2.0:
-        vehicle_cc = base_price * (70/100)
-    elif motor.engine_size > 2.0 and motor.engine_size <= 2.5:
-        vehicle_cc = base_price * (90/100) + 200
-    return vehicle_cc
 
 
 def calculate_driver_age(driver, base_price):
