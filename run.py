@@ -168,7 +168,7 @@ class Vehicle:
         return price_modifier
 
 
-class InsuranceCalculator:
+class insurance_calculation:
     """
     Class for calculating insurance
     """
@@ -180,7 +180,7 @@ class InsuranceCalculator:
         """
         Function to get returned value from vehicle.
         """
-        return self.get_vehicle_price()
+        return self.vehicle.get_vehicle_price()
 
     def get_personal_price(self, vehicle_price):
         """
@@ -312,6 +312,8 @@ def main():
 
     person_details = get_personal_details()
     vehicle_details = get_vehicle_details()
+    insurance_calculator = insurance_calculation(person_details, vehicle_details)
+    print("Your total premium : " + str(insurance_calculator.get_total_insurance_cost()))
 
 
 # Main function call.
