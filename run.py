@@ -18,7 +18,8 @@ class Person:
     # Get the insurance price from personal details  & vehicle
     def get_person_price(self, vehicle_price):
         """
-        Function
+        Function to determine the cost of insurance depending on the,
+        drivers : age, address, no claims bonus and penalty points.
         """
         # Add modifier for location
         vehicle_price = vehicle_price * self.get_address_modifier()
@@ -181,12 +182,10 @@ class InsuranceCalculator:
         return final_price
 
 
-def personal_details():
+def get_personal_details():
     """
     Get personal details from the user.
     """
-    print("Welcome to python insurances.")
-    print("Please proceed for an insurance quote.\n")
     f_name = details_validation_str("Please enter your first name?.\n")
     l_name = details_validation_str("Please enter your last name?.\n")
     # Array for valid address choices.
@@ -286,31 +285,17 @@ def details_validation_str(message):
                 valid_input = True
     return user_input_str
 
+
 # Main function
 def main():
     """
     Main function to run the application
     """
-    driver = personal_details()
-    vehicle_choice = get_vehicle_type()
-    motor = vehicle_details()
-    base_price = calculate_base_price(vehicle_choice)
-    calculate_base_price(vehicle_choice)
-    v_age = calculate_vehicle_age(motor, base_price)
-    calculate_vehicle_age(motor, base_price)
-    v_cc = calculate_vehicle_cc(motor, base_price)
-    calculate_vehicle_cc(motor, base_price)
-    d_age = calculate_driver_age(driver, base_price)
-    calculate_driver_age(driver, base_price)
-    pp = calculate_pen_points(driver, base_price)
-    calculate_pen_points(driver, base_price)
-    cb = no_claim_bonus(driver, base_price)
-    no_claim_bonus(driver, base_price)
-    d_ad = driver_address(driver, base_price)
-    driver_address(driver, base_price)
-    add(base_price, v_age, v_cc, d_age, pp, cb, d_ad)
-    final = add(base_price, v_age, v_cc, d_age, pp, cb, d_ad)
-    quote(final, driver, vehicle_choice, motor)
+    print("Welcome to python insurances.")
+    print("Please proceed for an insurance quote.\n")
+
+    person_details = get_personal_details()
+    vehicle_details = get_vehicle_details()
 
 
 # Main function call.
