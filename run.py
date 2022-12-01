@@ -87,6 +87,24 @@ class Vehicle:
         self.year = year
         self.engine_size = engine_size
 
+    # Get to total cost of the vehicle
+    def get_vehicle_price(self):
+        """
+        Function to calculate the total cost of the vehicle price,
+        including year and engine size.
+        """
+        print("Tag | Modifier | Price")
+        # Determine base price from Vehicle Type
+        base_price = self.get_base_price()
+        print("base | 0.00 | " + str(base_price))
+        # Add engine size price % modifier
+        base_price = base_price * self.get_cc_modifier()
+        print("cc | " + str(self.get_cc_modifier()) + " | " + str(base_price))
+        # Add vehicle Year mondifier
+        base_price = base_price * self.get_age_modifier()
+        print("year | " + str(self.get_age_modifier()) + " | " + str(base_price))
+        return base_price
+
     # Get a base price from the vehicle type.
     def get_base_price(self):
         """
