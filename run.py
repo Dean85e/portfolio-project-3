@@ -15,6 +15,29 @@ class Person:
         self.ncb = ncb
         self.p_point = p_point
 
+    # Get the insurance price from personal details  & vehicle
+    def get_person_price(self, vehicle_price):
+        """
+        Function
+        """
+        # Add modifier for location
+        vehicle_price = vehicle_price * self.get_address_modifier()
+        print("add | " + str(self.get_address_modifier()) + " | " + str(vehicle_price))
+        # Add modifier for age
+        vehicle_price = vehicle_price * self.get_age_modifier()
+        print("age | " + str(self.get_age_modifier()) + " | " + str(vehicle_price))
+        if int(self.age) >= 18 and int(self.age) <= 21:
+            # Add young driver premium
+            vehicle_price = vehicle_price+400
+            print("age | " + "Young Driver Premium" + " | " + str(vehicle_price))
+        # Add modifier for No claims
+        vehicle_price = vehicle_price * self.get_ncb_modifier()
+        print("ncb | " + str(self.get_ncb_modifier()) + " | " + str(vehicle_price))
+        # Add modifier for penalty points
+        vehicle_price = vehicle_price * self.get_pen_points_modifier()
+        print("pps | " + str(self.get_pen_points_modifier()) + " | " + str(vehicle_price))
+        return round(vehicle_price, 2)
+
     # Get address increase / discount
     def get_address_modifier(self):
         """Function to add to premium if customer lives in the city"""
@@ -151,6 +174,11 @@ class InsuranceCalculator:
     def __init__(self, person, vehicle):
         self.person = person
         self.vehicle = vehicle
+    
+    def get_total_insurance_cost(self):
+        vehicle_price = self.get_vehicle_price()
+        final_price = self.get_personal_price(VehiclePrice)
+        return final_price
 
 
 def personal_details():
