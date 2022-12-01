@@ -175,10 +175,26 @@ class InsuranceCalculator:
     def __init__(self, person, vehicle):
         self.person = person
         self.vehicle = vehicle
-    
+
+    def get_vehicle_price(self):
+        """
+        Function to get returned value from vehicle.
+        """
+        return self.get_vehicle_price()
+
+    def get_personal_price(self, vehicle_price):
+        """
+        Function to get returned value from person.
+        """
+        return self.person.get_person_price(vehicle_price)
+
     def get_total_insurance_cost(self):
+        """
+        Function to put driver price and vehichle price together
+        to return a value in final price.
+        """
         vehicle_price = self.get_vehicle_price()
-        final_price = self.get_personal_price(VehiclePrice)
+        final_price = self.get_personal_price(vehicle_price)
         return final_price
 
 
@@ -204,7 +220,7 @@ def get_vehicle_details():
     print("Thank you now we need to get your vehicle details.\n")
     # Array for valid vehicles
     valid_vehicles = ['1', '2', '3']
-    vehicle_type = validate_input_choice(valid_vehicles, "Please select a vehicle category:\nOption 1: Car\nOption 2: Van\n Option 3: Motorbike\n")
+    vehicle_type = validate_input_choice(valid_vehicles, "Please select a vehicle category:\nOption 1: Car\nOption 2: Van\nOption 3: Motorbike\n")
 
     make = details_validation_str("Please enter the make of your vehicle?.\n")
     model = details_validation_str("Please enter the model ?.\n")
