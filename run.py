@@ -209,7 +209,8 @@ def get_personal_details():
     address = validate_input_choice(
         location_choices, "Do you live in the city or county?\n")
     age = details_validation_int("Please enter your age ?.\n")
-    ncb = details_validation_int("How many years NCB do you have?.\n")
+    ncb_input = range(0, 6)
+    ncb = validate_input_details(ncb_input, "How many years NCB do you have?.\n")
     p_point_input = range(0, 13)
     p_point = validate_input_details(p_point_input, "How many penalty points do you have?.\n")
     return Person(f_name, l_name, address, age, ncb, p_point)
