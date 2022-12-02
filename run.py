@@ -208,7 +208,8 @@ def get_personal_details():
     location_choices = ['City', 'County']
     address = validate_input_choice(
         location_choices, "Do you live in the city or county?\n")
-    age = details_validation_int("Please enter your age ?.\n")
+    age_input = range(18, 81)
+    age = validate_input_details(age_input, "Please enter your age ?.\n")
     ncb_input = range(0, 6)
     ncb = validate_input_details(ncb_input, "How many years NCB do you have?.\n")
     p_point_input = range(0, 13)
