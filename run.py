@@ -168,7 +168,7 @@ class Vehicle:
         return price_modifier
 
 
-class insurance_calculation:
+class InsuranceCalculation:
     """
     Class for calculating insurance
     """
@@ -206,10 +206,12 @@ def get_personal_details():
     l_name = details_validation_str("Please enter your last name?.\n")
     # Array for valid address choices.
     location_choices = ['City', 'County']
-    address = validate_input_choice(location_choices, "Do you live in the city or county?\n")
+    address = validate_input_choice(
+        location_choices, "Do you live in the city or county?\n")
     age = details_validation_int("Please enter your age ?.\n")
     ncb = details_validation_int("How many years NCB do you have?.\n")
-    p_point = details_validation_int("How many penalty points do you have?.\n")
+    p_point_input = range(0, 13)
+    p_point = validate_input_details(p_point_input, "How many penalty points do you have?.\n")
     return Person(f_name, l_name, address, age, ncb, p_point)
 
 
@@ -220,13 +222,33 @@ def get_vehicle_details():
     print("Thank you now we need to get your vehicle details.\n")
     # Array for valid vehicles
     valid_vehicles = ['1', '2', '3']
-    vehicle_type = validate_input_choice(valid_vehicles, "Please select a vehicle category:\nOption 1: Car\nOption 2: Van\nOption 3: Motorbike\n")
+    vehicle_type = validate_input_choice(
+        valid_vehicles,
+        "Choose a vehicle:\n 1 for: Car\n 2 for: Van\n 3 for: Motorbike\n")
 
     make = details_validation_str("Please enter the make of your vehicle?.\n")
     model = details_validation_str("Please enter the model ?.\n")
-    year = details_validation_int("What year is your vehicle?.\n")
-    engine_size = float(details_validation_float("Enter vehicle engine size?.\n"))
+    year_input = range(2000, 2023)
+    year = validate_input_details(year_input, "What year is your vehicle?.\n")
+    engine_size = float(
+        details_validation_float("Enter vehicle engine size?.\n"))
     return Vehicle(vehicle_type, make, model, year, engine_size)
+
+
+def validate_input_details(valid_details, message):
+    """
+    'ValidChoices' is going to be an array,
+     anything inside the array can be considerd a valid choice.
+    """
+    valid_input = False
+    user_input = 0
+    while valid_input is False:
+        user_input = input(message)
+        for details in valid_details:
+            if details == int(user_input):
+                valid_input = True
+                return user_input
+        print("Invalid input! please try again.")
 
 
 # Validation for numerical input
@@ -312,8 +334,10 @@ def main():
 
     person_details = get_personal_details()
     vehicle_details = get_vehicle_details()
-    insurance_calculator = insurance_calculation(person_details, vehicle_details)
-    print("Your total premium : " + str(insurance_calculator.get_total_insurance_cost()))
+    insurance_calculator = InsuranceCalculation(
+        person_details, vehicle_details)
+    print("Your total premium : " + str(
+        insurance_calculator.get_total_insurance_cost()))
 
 
 # Main function call.
