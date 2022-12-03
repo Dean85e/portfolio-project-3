@@ -15,7 +15,6 @@ class Person:
         self.ncb = ncb
         self.p_point = p_point
 
-    # Get the insurance price from personal details  & vehicle
     def get_person_price(self, vehicle_price):
         """
         Function to determine the cost of insurance depending on the,
@@ -41,7 +40,6 @@ class Person:
         print("")
         return round(vehicle_price, 2)
 
-    # Get address increase / discount
     def get_address_modifier(self):
         """Function to add to premium if customer lives in the city"""
         price_modifier = 0
@@ -51,7 +49,6 @@ class Person:
             price_modifier = 0.90
         return price_modifier
 
-    # Get no claims bonus increase / discount
     def get_ncb_modifier(self):
         """function to calculate no claim bonus discount."""
         price_modifier = 0
@@ -69,7 +66,6 @@ class Person:
             price_modifier = 1.15
         return price_modifier
 
-    # Get penalty points increase / discount
     def get_pen_points_modifier(self):
         """function to apply penalty points charge to premium."""
         price_modifier = 0
@@ -83,7 +79,6 @@ class Person:
             price_modifier = 0.9
         return price_modifier
 
-    # Get persons age increase / discount
     def get_age_modifier(self):
         """function to get self age which affects premium"""
         price_modifier = 0
@@ -113,7 +108,6 @@ class Vehicle:
         self.year = year
         self.engine_size = engine_size
 
-    # Get to total cost of the vehicle
     def get_vehicle_price(self):
         """
         Function to calculate the total cost of the vehicle price,
@@ -122,16 +116,15 @@ class Vehicle:
         print("Tag | Modifier | Price")
         # Determine base price from Vehicle Type
         base_price = self.get_base_price()
-        print(f"base | 0.00 | {(base_price)}")
+        print(f"Base | 0.00 | {(base_price)}")
         # Add engine size price % modifier
         base_price = base_price * self.get_cc_modifier()
-        print(f"cc | {self.get_cc_modifier()} | {base_price}")
+        print(f"Engine capacity | {self.get_cc_modifier()} | {base_price}")
         # Add vehicle Year mondifier
         base_price = base_price * self.get_age_modifier()
-        print(f"year | {self.get_age_modifier()} | {base_price}")
+        print(f"Year | {self.get_age_modifier()} | {base_price}")
         return base_price
 
-    # Get a base price from the vehicle type.
     def get_base_price(self):
         """
         Get a base price from the vehicle type
@@ -143,7 +136,6 @@ class Vehicle:
         elif self.vehicle_type == 3:
             return 250
 
-    # Get Engine size discount / increase
     def get_cc_modifier(self):
         """function to get Engine capacity of vehicle"""
         price_modifier = 0
@@ -157,7 +149,6 @@ class Vehicle:
             price_modifier = 1.60
         return price_modifier
 
-    # Get Vehicle Age discount / increase
     def get_age_modifier(self):
         """ function to get Vehicle year """
         price_modifier = 0
@@ -247,8 +238,8 @@ def get_vehicle_details():
 
 def validate_input_details(valid_details, message):
     """
-    'ValidChoices' is going to be an array,
-     anything inside the array can be considerd a valid choice.
+    'Valid_details' is going to check for input in range,
+     anything inside the range set can be considerd a valid choice.
     """
     valid_input = False
     user_input = 0
@@ -298,7 +289,8 @@ def validate_input_choice(valid_choices, message):
 # Validation for floating point input for engine size in cc.
 def validate_float(min_cc, max_cc, message):
     """
-    Input validation of float for engine size.
+    Input validation of float for engine size,
+    with a minimun and maximum value passed in.
     """
     valid_input = False
     user_float = 0
@@ -306,7 +298,7 @@ def validate_float(min_cc, max_cc, message):
         user_float = input(message)
         try:
             if float(user_float) < min_cc or float(user_float) > max_cc:
-                print("Enter a number between 0.5 and 2.5")
+                print("Invalid input!")
                 valid_input = False
             else:
                 valid_input = True
@@ -364,7 +356,7 @@ def main():
     print("")
     print("Premium Breakdown:")
     print("")
-    print("Your total premium : " + str(
+    print("Your total premium is: " + str(
         insurance_calculator.get_total_insurance_cost()))
 
 
