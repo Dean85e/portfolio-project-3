@@ -1,31 +1,80 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Python Insurance Calculator.
+![Opening message](/images/application-start-up.png)
 
-Welcome Dean85e,
+Welcome to the Insurance Calculator application. This application is built using only Python.
+it is designed to provide the user with a realistic insurance quote depending on what details
+the user enters. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+There is three vehicle categorys which are cars, vans and motorbikes.
 
-## Reminders
+Live link to the application can be found here: [Python Insurance Calculator](https://python-insurance-calculator.herokuapp.com/)
+## Target Audience
+ * This application is for people who may want to get an isnsurance quote.
+# Features
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+## Existing Features
 
-## Creating the Heroku app
+* The user is presented with a welcome message and instructed to proceed for an isurance quote.
+![Personal details](/images/personal_detail.png)
+* The program will then ask the user to enter a series of some personal details such as:
+  * First name.
+  * Second name.
+  * Age.
+  * Address.
+  * No claim bonus.
+  * Penalty points.
+ ![Vehicle selection](/images/vehicle_select.png)
+ * The user will then be given a choice of vehicle to select:
+   
+   * Option 1 for cars.
+   * Option 2 for vans.
+   * option 3 for motorbikes.
+ ![Vehicle information](/images/vehicle_info.png)
+ * Once the user has selected a vehicle category the program will then ask 
+ a series of questions about the vehicle such as:
+   
+   * The make of the vehicle.
+   * The model of the vehicle.
+   * The year of the vehicle.
+   * The engine size in cubic capacity.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* The program will then calculate the insurance premium with the information the user has provided.
+![Information feedback](/images/info_feedback.png)
 
-1. `heroku/python`
-2. `heroku/nodejs`
+* The user will be presented with all the details they have provided.
+![Premium breakdown](/images/premium_breakdown.png)
+* Also the user will be given an insurance premium breakdown of all the increases or decreases depending on the information entered, followed by the total premium price.
+![Total premium](/images/total_premium.png)
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Future Features
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+* I would like to add a google sheet to store and retrieve insurance quotes when there is time to do so.
 
-Connect your GitHub repository and deploy as normal.
+* I would also like to add more categorys like home insurance and other vehicle categorys.
 
-## Constraints
+## Design
+![Total premium](/images/lucid-chart.png)
+* My starting point on this project was to design a flow chart to give me a clear understanding of how i may approach it.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## User stories
 
------
-Happy coding!
+* As a user I would like to have a clear understanding of what is being presented to me.
+
+* As a user I would like the instructions to be easy to follow.
+
+* As a user i would like to see where my insurance premium increased and why.
+
+* As a user i would also like to see where my insurance premium decreased and why.
+
+# Testing
+
+## Validator Testing
+
+* I can confirm this project code passed through the CI Python Linter with no issues.
+
+![Total premium](/images/py-validation.png)
+## Application Testing
+
+* I can confirm that the input validation is working on each input question.
+
+* I can confirm that the program adds and subtracts from the base premium as expected depending on which data the user inputs.
