@@ -41,7 +41,8 @@ class Person:
         return round(vehicle_price, 2)
 
     def get_address_modifier(self):
-        """Function to add to premium if customer lives in the city"""
+        """Function to add to premium if customer lives in the city,
+           return price modifier"""
         price_modifier = 0
         if self.address.lower() == "city":
             price_modifier = 1.15
@@ -50,7 +51,8 @@ class Person:
         return price_modifier
 
     def get_ncb_modifier(self):
-        """function to calculate no claim bonus discount."""
+        """function to calculate no claim bonus discount,
+           return price modifier."""
         price_modifier = 0
         if int(self.ncb) == 5:
             price_modifier = 0.60
@@ -67,7 +69,8 @@ class Person:
         return price_modifier
 
     def get_pen_points_modifier(self):
-        """function to apply penalty points charge to premium."""
+        """function to apply penalty points charge to premium,
+           return price modifier."""
         price_modifier = 0
         if int(self.p_point) >= 1 and int(self.p_point) <= 3:
             price_modifier = 1.30
@@ -80,7 +83,7 @@ class Person:
         return price_modifier
 
     def get_age_modifier(self):
-        """function to get self age which affects premium"""
+        """function to get self age & return price modifier"""
         price_modifier = 0
         if int(self.age) >= 18 and int(self.age) <= 21:
             price_modifier = 1.5
@@ -137,7 +140,7 @@ class Vehicle:
             return 250
 
     def get_cc_modifier(self):
-        """function to get Engine capacity of vehicle"""
+        """function to get Engine capacity of vehicle return price modifier"""
         price_modifier = 0
         if self.engine_size >= 0.5 and self.engine_size <= 1.0:
             price_modifier = 0.7
@@ -150,7 +153,7 @@ class Vehicle:
         return price_modifier
 
     def get_age_modifier(self):
-        """ function to get Vehicle year """
+        """ function to get Vehicle year and return price modifier"""
         price_modifier = 0
         if int(self.year) >= 2000 and int(self.year) <= 2010:
             price_modifier = 1.50
@@ -193,7 +196,7 @@ class InsuranceCalculation:
 
 def get_personal_details():
     """
-    Get personal details from the user.
+    Function get personal details from the user.
     """
     f_name = details_validation_str("Please enter your first name?.\n")
     l_name = details_validation_str("Please enter your last name?.\n")
@@ -215,7 +218,7 @@ def get_personal_details():
 
 def get_vehicle_details():
     """
-    Get vehicle details from the user.
+    Function to get vehicle details from the user.
     """
     print("Thank you now we need to get your vehicle details.\n")
     # Array for valid vehicles
@@ -252,7 +255,6 @@ def validate_input_details(valid_details, message):
         print("Invalid input! please try again.")
 
 
-# Validation for numerical input
 def details_validation_int(message):
     """
     Input validation of integer personal details.
@@ -269,7 +271,6 @@ def details_validation_int(message):
     return user_input_num
 
 
-# validation for vehicle type & driver address
 def validate_input_choice(valid_choices, message):
     """
     'ValidChoices' is going to be an array,
@@ -286,7 +287,6 @@ def validate_input_choice(valid_choices, message):
         print("Invalid input! please try again.")
 
 
-# Validation for floating point input for engine size in cc.
 def validate_float(min_cc, max_cc, message):
     """
     Input validation of float for engine size,
@@ -308,10 +308,10 @@ def validate_float(min_cc, max_cc, message):
     return user_float
 
 
-# Validation for string input & strip function to check for empty strings.
 def details_validation_str(message):
     """
-    Input validation of string personal details.
+    Input validation of string personal details,
+    the .strip method will check for empty strings.
     """
     valid_input = False
     user_input_str = 0
@@ -329,7 +329,6 @@ def details_validation_str(message):
     return user_input_str
 
 
-# Main function
 def main():
     """
     Main function to run the application
