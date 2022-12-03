@@ -211,9 +211,11 @@ def get_personal_details():
     age_input = range(18, 81)
     age = validate_input_details(age_input, "Please enter your age ?.\n")
     ncb_input = range(0, 6)
-    ncb = validate_input_details(ncb_input, "How many years NCB do you have?.\n")
-    p_point_input = range(0, 13)
-    p_point = validate_input_details(p_point_input, "How many penalty points do you have?.\n")
+    ncb = validate_input_details(
+        ncb_input, "How many years NCB do you have?.\n")
+    pp_input = range(0, 13)
+    p_point = validate_input_details(
+        pp_input, "How many penalty points do you have?.\n")
     return Person(f_name, l_name, address, age, ncb, p_point)
 
 
@@ -232,8 +234,10 @@ def get_vehicle_details():
     model = details_validation_str("Please enter the model ?.\n")
     year_input = range(2000, 2023)
     year = validate_input_details(year_input, "What year is your vehicle?.\n")
+    min_cc = 0.5
+    max_cc = 3.0
     engine_size = float(
-        details_validation_float("Enter vehicle engine size?.\n"))
+        validation_float(min_cc, max_cc, "Enter vehicle engine size?.\n"))
     return Vehicle(vehicle_type, make, model, year, engine_size)
 
 
@@ -288,21 +292,24 @@ def validate_input_choice(valid_choices, message):
 
 
 # Validation for floating point input for engine size in cc.
-def details_validation_float(message):
+def validation_float(min_cc, max_cc, message):
     """
     Input validation of float for engine size.
     """
     valid_input = False
-    user_input_num = 0
+    user_float = 0
     while valid_input is False:
-        user_input_num = input(message)
+        user_float = input(message)
         try:
-            float(user_input_num)
-            valid_input = True
+            if float(user_float) < min_cc or float(user_float) > max_cc:
+                print("Enter a number between 0.5 and 3.0")
+                valid_input = False
+            else:
+                valid_input = True
         except ValueError:
             print("Invalid option please enter a decimal number.\n")
             print("Example 1.0 , 1.5 , 2.0")
-    return user_input_num
+    return user_float
 
 
 # Validation for string input & strip function to check for empty strings.
