@@ -23,20 +23,22 @@ class Person:
         """
         # Add modifier for location
         vehicle_price = vehicle_price * self.get_address_modifier()
-        print("add | " + str(self.get_address_modifier()) + " | " + str(vehicle_price))
+        print(f"Address | {self.get_address_modifier()} | {vehicle_price}")
         # Add modifier for age
         vehicle_price = vehicle_price * self.get_age_modifier()
-        print("age | " + str(self.get_age_modifier()) + " | " + str(vehicle_price))
+        print(f"Age | {self.get_age_modifier()} | {vehicle_price}")
         if int(self.age) >= 18 and int(self.age) <= 21:
             # Add young driver premium
             vehicle_price = vehicle_price+400
-            print("age | " + "Young Driver Premium" + " | " + str(vehicle_price))
+            print(f"Age | Young Driver Premium | {vehicle_price}")
         # Add modifier for No claims
         vehicle_price = vehicle_price * self.get_ncb_modifier()
-        print("ncb | " + str(self.get_ncb_modifier()) + " | " + str(vehicle_price))
+        print(f"No claim bonus |  {self.get_ncb_modifier()} | {vehicle_price}")
         # Add modifier for penalty points
         vehicle_price = vehicle_price * self.get_pen_points_modifier()
-        print("pps | " + str(self.get_pen_points_modifier()) + " | " + str(vehicle_price))
+        print(f"Penalty points | {self.get_pen_points_modifier()} | "
+              f"{vehicle_price}")
+        print("")
         return round(vehicle_price, 2)
 
     # Get address increase / discount
@@ -53,17 +55,17 @@ class Person:
     def get_ncb_modifier(self):
         """function to calculate no claim bonus discount."""
         price_modifier = 0
-        if self.ncb == 5:
+        if int(self.ncb) == 5:
             price_modifier = 0.60
-        elif self.ncb == 4:
+        elif int(self.ncb) == 4:
             price_modifier = 0.70
-        elif self.ncb == 3:
+        elif int(self.ncb) == 3:
             price_modifier = 0.80
-        elif self.ncb == 2:
+        elif int(self.ncb) == 2:
             price_modifier = 0.80
-        elif self.ncb == 1:
+        elif int(self.ncb) == 1:
             price_modifier = 0.90
-        else:
+        elif int(self.ncb) == 0:
             price_modifier = 1.15
         return price_modifier
 
@@ -120,13 +122,13 @@ class Vehicle:
         print("Tag | Modifier | Price")
         # Determine base price from Vehicle Type
         base_price = self.get_base_price()
-        print("base | 0.00 | " + str(base_price))
+        print(f"base | 0.00 | {(base_price)}")
         # Add engine size price % modifier
         base_price = base_price * self.get_cc_modifier()
-        print("cc | " + str(self.get_cc_modifier()) + " | " + str(base_price))
+        print(f"cc | {self.get_cc_modifier()} | {base_price}")
         # Add vehicle Year mondifier
         base_price = base_price * self.get_age_modifier()
-        print("year | " + str(self.get_age_modifier()) + " | " + str(base_price))
+        print(f"year | {self.get_age_modifier()} | {base_price}")
         return base_price
 
     # Get a base price from the vehicle type.
@@ -237,9 +239,9 @@ def get_vehicle_details():
     year = validate_input_details(
         year_input, "Enter vehicle year between 2000 to 2022.\n")
     min_cc = 0.5
-    max_cc = 3.0
+    max_cc = 2.5
     engine_size = float(
-        validate_float(min_cc, max_cc, "Enter engine size from 0.5 to 3.0.\n"))
+        validate_float(min_cc, max_cc, "Enter engine size from 0.5 to 2.5\n"))
     return Vehicle(vehicle_type, make, model, year, engine_size)
 
 
@@ -304,7 +306,7 @@ def validate_float(min_cc, max_cc, message):
         user_float = input(message)
         try:
             if float(user_float) < min_cc or float(user_float) > max_cc:
-                print("Enter a number between 0.5 and 3.0")
+                print("Enter a number between 0.5 and 2.5")
                 valid_input = False
             else:
                 valid_input = True
