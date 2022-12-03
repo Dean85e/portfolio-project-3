@@ -209,13 +209,14 @@ def get_personal_details():
     address = validate_input_choice(
         location_choices, "Do you live in the city or county?\n")
     age_input = range(18, 81)
-    age = validate_input_details(age_input, "Please enter your age ?.\n")
+    age = validate_input_details(
+        age_input, "Please enter your age from 18 to 80 ?.\n")
     ncb_input = range(0, 6)
     ncb = validate_input_details(
-        ncb_input, "How many years NCB do you have?.\n")
+        ncb_input, "Enter no claim bonus from 0 to 5 .\n")
     pp_input = range(0, 13)
     p_point = validate_input_details(
-        pp_input, "How many penalty points do you have?.\n")
+        pp_input, "Enter penalty points from 0 to 12.\n")
     return Person(f_name, l_name, address, age, ncb, p_point)
 
 
@@ -233,11 +234,12 @@ def get_vehicle_details():
     make = details_validation_str("Please enter the make of your vehicle?.\n")
     model = details_validation_str("Please enter the model ?.\n")
     year_input = range(2000, 2023)
-    year = validate_input_details(year_input, "What year is your vehicle?.\n")
+    year = validate_input_details(
+        year_input, "Enter vehicle year between 2000 to 2022.\n")
     min_cc = 0.5
     max_cc = 3.0
     engine_size = float(
-        validation_float(min_cc, max_cc, "Enter vehicle engine size?.\n"))
+        validate_float(min_cc, max_cc, "Enter engine size from 0.5 to 3.0.\n"))
     return Vehicle(vehicle_type, make, model, year, engine_size)
 
 
@@ -292,7 +294,7 @@ def validate_input_choice(valid_choices, message):
 
 
 # Validation for floating point input for engine size in cc.
-def validation_float(min_cc, max_cc, message):
+def validate_float(min_cc, max_cc, message):
     """
     Input validation of float for engine size.
     """
