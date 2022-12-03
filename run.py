@@ -347,6 +347,21 @@ def main():
     vehicle_details = get_vehicle_details()
     insurance_calculator = InsuranceCalculation(
         person_details, vehicle_details)
+    print("")
+    print(f"Hello {person_details.f_name} "
+          f"{person_details.l_name} your quote for vehicle "
+          f"{vehicle_details.make} {vehicle_details.model} is as follows:\n")
+    print("")
+    print("Details entered are:\n")
+    print(f"Address: {person_details.address}")
+    print(f"Age: {person_details.age}")
+    print(f"No claim bonus: {person_details.ncb}")
+    print(f"Penalty points: {person_details.p_point}")
+    print(f"Vehicle year: {vehicle_details.year}")
+    print(f"Engine capacity: {vehicle_details.engine_size}")
+    print("")
+    print("Premium Breakdown:")
+    print("")
     print("Your total premium : " + str(
         insurance_calculator.get_total_insurance_cost()))
 
