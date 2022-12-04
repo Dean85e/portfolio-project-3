@@ -3,13 +3,15 @@
 ![Opening message](/images/application-start-up.png)
 
 Welcome to the Insurance Calculator application. This application is built using only Python.
-it is designed to provide the user with a realistic insurance quote depending on what details
+It is designed to provide the user with a realistic insurance quote depending on what details
 the user enters. 
 
-There is three vehicle categorys which are cars, vans and motorbikes.
+There is three vehicle categories which are cars, vans and motorbikes.
 With each category starting with a seperate base price.
 
 Live link to the application can be found here: [Python Insurance Calculator](https://python-insurance-calculator.herokuapp.com/)
+
+Link to my repository on GitHub can be found [here](https://github.com/Dean85e/portfolio-project-3)
 
 ## Target Audience
 
@@ -19,7 +21,7 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 
 ## Existing Features
 
-* The user is presented with a welcome message and instructed to proceed for an isurance quote.
+* The user is presented with a welcome message and instructed to proceed for an insurance quote.
 
 ![Personal details](/images/personal-detail.png)
 
@@ -37,7 +39,7 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
    
    * Option 1 for cars.
    * Option 2 for vans.
-   * option 3 for motorbikes.
+   * Option 3 for motorbikes.
  
  ![Vehicle information](/images/vehicle-info.png)
  
@@ -65,13 +67,13 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 
 * I would like to add a google sheet to store and retrieve insurance quotes when there is time to do so.
 
-* I would also like to add more categorys like home insurance and other vehicle categorys.
+* I would also like to add more categories like home insurance and other vehicle categories.
 
 ## Design
 
 ![Total premium](/images/lucid-chart.png)
 
-* My starting point on this project was to design a flow chart to give me a clear understanding of how i may approach it.
+* My starting point on this project was to design a flow chart to give me a clear understanding of how I may approach it.
 
 ## User stories
 
@@ -79,21 +81,21 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 
 * As a user I would like the instructions to be easy to follow.
 
-* As a user i would like to see where my insurance premium increased and why.
+* As a user I would like to see where my insurance premium increased and why.
 
-* As a user i would also like to see where my insurance premium decreased and why.
+* As a user I would also like to see where my insurance premium decreased and why.
 
 ## Users Expect
 
-* As a young person i expect my premium to be expensive.
+* As a young person I expect my premium to be expensive.
 
-* As a driver of an old vehicle i expect an increase on my total premium.
+* As a driver of an old vehicle I expect an increase on my total premium.
 
-* As driver with many penalty points i expect an increase on my total premium.
+* As driver with many penalty points I expect an increase on my total premium.
 
-* As a driver with many years no claim bonus i expect a decrease on my total premium.
+* As a driver with many years no claim bonus I expect a decrease on my total premium.
 
-* As a driver if my vehicle engine size is small i expect a decrease on my total premium on the other hand if my engine size is large i expect an increase on my total premium
+* As a driver if my vehicle engine size is small I expect a decrease on my total premium on the other hand if my engine size is large I expect an increase on my total premium
 
 # Testing
 
@@ -187,15 +189,15 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 
 * This has fixed the issue.
 
-* I also found that the string input questions would accept special characters to fix this i used the .isalpha method.
+* I also found that the string input questions would accept special characters to fix this I used the .isalpha method.
 
 ![Bug solution](/images/special-char.png)
 
 * This issue is now resolved.
 
-* Not neccesarily a bug but when i started the project i was having some difficulty in passing parameters and arguments to different functions , this was because i had the functions placed outside the class objects and once i moved the functions inside the appropriate classes things became a lot more clear to me regarding the flow of the application.
+* Not neccesarily a bug but when I started the project I was having some difficulty in passing parameters and arguments to different functions , This was because I had the functions placed outside the class objects and once I moved the functions inside the appropriate classes things became a lot more clear to me regarding the flow of the application.
 
-* I also found that validating user input one by one was making my functions untidy and longer than they needed to be, so I created validator function for each case and assigned each input to its corosponding validator function.
+* I also found that validating user input one by one was making my functions untidy and longer than they needed to be, so I created validator function for each case and assigned each input to its corresponding validator function.
 
 
 ## Unfixed Bugs
@@ -243,7 +245,7 @@ The following are the steps I went through to deploy my live site:
   * Press Enter. Your local clone will be created.
 
 ## Credits 
-  Throughout the building process i faced many challenges, here are the resources that i found very helpful. 
+  Throughout the building process I faced many challenges, here are the resources that I found very helpful. 
   
   * This Youtube channel is an excellent source of information, In particular it helped me bolster my understanding of the concepts of classes and instance objects. [Link Here](https://www.youtube.com/@johnphilipjones)
 
@@ -276,3 +278,9 @@ The following are the steps I went through to deploy my live site:
  * Heroku
 
  * Code Institute template
+
+ ## Links 
+
+  Live link to the application can be found here: [Python Insurance Calculator](https://python-insurance-calculator.herokuapp.com/)
+
+  Link to my repository on GitHub can be found [here](https://github.com/Dean85e/portfolio-project-3)
