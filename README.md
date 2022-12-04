@@ -108,3 +108,85 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 * I can confirm that the input validation is working on each input question.
 
 * I can confirm that the program adds and subtracts from the base premium as expected depending on which data the user inputs.
+
+* Testing input validation on First Name. 
+
+![First name blank](/images/f-name-blank.png)
+
+
+![First name number](/images/f-name-num.png)
+
+* Testing input validation on Last Name.
+
+![Last name blank](/images/l-name-blank.png)
+
+![Last name number](/images/l-name-num.png)
+
+* Testing input validation on Address.
+
+![Address blank](/images/address-blank.png)
+
+![Address number](/images/address-num.png)
+
+![Address string](/images/address-str.png)
+
+* Testing input validation on Age.
+
+![Age blank](/images/age-blank.png)
+
+![Age](/images/age-num.png)
+
+![Age string](/images/age-str.png)
+
+* Testing input validation on No Claim Bonus.
+
+![No claim blank](/images/ncb-blank.png)
+
+![No claim string](/images/ncb-str.png)
+
+![No claim wrong int](/images/ncb-wrong-int.png)
+
+* Testing input validation on Vehicle Menu.
+
+![Menu select string](/images/vehicle-select-str.png)
+
+![Menu select wrong int](/images/vehicle-select-wrong-int.png)
+
+* Testing input validation on Vehicle Make.
+
+![vehicle make int](/images/make-int.png)
+
+* Testing input validation on Vehicle Model.
+
+![model int](/images/model-int.png)
+
+* Testing input validation on Vehicle Year.
+
+![year blank](/images/year-blank.png)
+
+![year string](/images/year-str.png)
+
+* Testing input validation on Engine Capacity.
+
+![CC blank](/images/cc-blank.png)
+
+![CC string](/images/cc-str.png)
+
+![CC wrong int](/images/cc-wrong-int.png)
+
+# Bugs 
+
+## Solved Bugs 
+
+![Bug](/images/input-error.png)
+
+
+* Upon testing I discovered if an empty string or a single character (char) was entered in any of inputs using the range() method the program would crash to fix this I used the .strip method to make sure the user could not enter an empty string by setting valid_input to False , for the single character I checked if the user has entered a string and if so set valid_input to False.
+
+![Bug solution](/images/validation-bug.png)
+
+* This has fixed the issue.
+
+* Not neccesarily a bug but when i started the project i was having some difficulty in passing parameters and arguments to different functions , this was because i had the functions placed outside the class objects and once i moved the functions inside the appropriate classes things became a lot more clear to me regarding the flow of the application.
+
+* I also found that validating user input one by one was making my functions untidy and longer than they needed to be, so I created validator function for each case and assigned each input to its corosponding validator function. 
