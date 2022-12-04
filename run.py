@@ -245,6 +245,7 @@ def validate_input_details(valid_details, message):
     """
     'Valid_details' is going to check for input in range,
      anything inside the range set can be considerd a valid choice.
+     .strip will check for an empty field.
     """
     valid_input = False
     user_input = 0
@@ -321,6 +322,7 @@ def details_validation_str(message):
     """
     Input validation of string personal details,
     the .strip method will check for empty strings.
+    and will check for inputs less than 2 or greater than 10.
     """
     valid_input = False
     user_input_str = 0
@@ -333,6 +335,12 @@ def details_validation_str(message):
             if len(user_input_str.strip()) == 0:
                 valid_input = False
                 print("Please input")
+            elif len(user_input_str.strip()) < 2:
+                valid_input = False
+                print("Please enter between 2 to 10 letters")
+            elif len(user_input_str.strip()) > 10:
+                valid_input = False
+                print("Please enter betweem 2 or 10 letters")
             else:
                 valid_input = True
     return user_input_str
@@ -350,10 +358,10 @@ def main():
     insurance_calculator = InsuranceCalculation(
         person_details, vehicle_details)
     print("")
+    print("")
     print(f"Hello {person_details.f_name} "
           f"{person_details.l_name} your quote for vehicle "
           f"{vehicle_details.make} {vehicle_details.model} is as follows:\n")
-    print("")
     print("Details entered are:\n")
     print(f"Address: {person_details.address}")
     print(f"Age: {person_details.age}")
