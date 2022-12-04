@@ -55,7 +55,7 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 
 * The user will be presented with all the details they have provided.
 
-![Premium breakdown](/images/premium-breakdown.png)
+![Premium breakdown](/images/premium_breakdown.png)
 
 * Also the user will be given an insurance premium breakdown of all the increases or decreases depending on the information entered, followed by the total premium price.
 
@@ -187,6 +187,92 @@ Live link to the application can be found here: [Python Insurance Calculator](ht
 
 * This has fixed the issue.
 
+* I also found that the string input questions would accept special characters to fix this i used the .isalpha method.
+
+![Bug solution](/images/special-char.png)
+
+* This issue is now resolved.
+
 * Not neccesarily a bug but when i started the project i was having some difficulty in passing parameters and arguments to different functions , this was because i had the functions placed outside the class objects and once i moved the functions inside the appropriate classes things became a lot more clear to me regarding the flow of the application.
 
-* I also found that validating user input one by one was making my functions untidy and longer than they needed to be, so I created validator function for each case and assigned each input to its corosponding validator function. 
+* I also found that validating user input one by one was making my functions untidy and longer than they needed to be, so I created validator function for each case and assigned each input to its corosponding validator function.
+
+
+## Unfixed Bugs
+
+* No unfixed Bugs.
+
+## Deployment
+
+The following are the steps I went through to deploy my live site:
+
+* The site was deployed using Heroku. The steps to deploy are as follows:
+
+  1. Go to Heroku
+  2. Go to 'New' and select 'Create a new app'
+  3. Input your app name and create app.
+  4. Navigate to 'Settings'
+  5. Install the needed buildpacks. Select Python and install and then node.js and 
+     install and then click save. They must be in this order.
+  6. Navigate to the 'Deploy' section.
+  7. Connect to GitHub, search for your repo and confirm.
+  8. Choose branch to deploy.
+  9. Your app should now be available to see. You can choose whether to have your app 
+     automatically redeploy with every push or to keep it manual.
+
+* To Fork the repository:
+
+  * On GitHub.com, navigate to the repository.
+  * In the top-right corner of the page, click Fork.
+  * Select an owner for the forked repository.
+  * By default, forks are named the same as their parent repositories. You can change 
+    the name of the fork to distinguish it further.
+  *  Optionally, add a description of your fork.
+  * Choose whether to copy only the default branch or all branches to the new fork.
+  * Click Create fork.
+
+* To Clone the repository:
+
+  * On GitHub.com, navigate to the repository.
+  * Above the list of files, click the Code button.
+  * Copy the URL for the repository.
+  * Open Git Bash.
+  * Change the current working directory to the location where you want the cloned 
+    directory.
+  * Type git clone, and then paste the URL you copied earlier.
+  * Press Enter. Your local clone will be created.
+
+## Credits 
+  Throughout the building process i faced many challenges, here are the resources that i found very helpful. 
+  
+  * This Youtube channel is an excellent source of information, In particular it helped me bolster my understanding of the concepts of classes and instance objects. [Link Here](https://www.youtube.com/@johnphilipjones)
+
+  * The .strip method was inspired by this thread on [Stackoverflow](https://stackoverflow.com/questions/51764409/how-to-prevent-user-from-inputting-spaces-nothing-in-python)
+
+  * I found the Object Orientated Programming tutorial on youtube very helpful with [Tech With Tim](https://www.youtube.com/watch?v=JeznW_7DlB0&t=12s)
+
+  * Some inspiration for the input validation was taken from here [Youtube](https://www.youtube.com/watch?v=LUWyA3m_-r0)
+
+  * The .isalpha method was taken from here [Youtube](https://www.youtube.com/watch?v=HanqlqLzdnU)
+
+  I also found many helpful threads online regarding the Python __init__ Function links to these threads can be found below:
+
+  * [w3schools](https://www.w3schools.com/python/gloss_python_class_init.asp)
+
+  * [geeksforgeeks.org](https://www.geeksforgeeks.org/__init__-in-python/)
+
+  * [AskPython](https://www.askpython.com/python/oops/init-method)
+
+## Languages used 
+
+ * Python
+
+## Technologies used
+
+ * Github 
+
+ * Gitpod
+
+ * Heroku
+
+ * Code Institute template

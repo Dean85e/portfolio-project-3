@@ -341,8 +341,10 @@ def details_validation_str(message):
             elif len(user_input_str.strip()) > 10:
                 valid_input = False
                 print("Please enter betweem 2 or 10 letters")
-            else:
+            elif user_input_str.isalpha():
                 valid_input = True
+            else:
+                print("Please use letters only")
     return user_input_str
 
 
