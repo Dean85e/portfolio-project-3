@@ -22,20 +22,22 @@ class Person:
         """
         # Add modifier for location
         vehicle_price = vehicle_price * self.get_address_modifier()
-        print(f"Address | {self.get_address_modifier()} | {vehicle_price}")
+        print(f"Driver Address | {self.get_address_modifier()} | "
+              f"{vehicle_price}")
         # Add modifier for age
         vehicle_price = vehicle_price * self.get_age_modifier()
-        print(f"Age | {self.get_age_modifier()} | {vehicle_price}")
+        print(f"Drivers  Age   | {self.get_age_modifier()}    |"
+              f" {vehicle_price}")
         if int(self.age) >= 18 and int(self.age) <= 21:
             # Add young driver premium
             vehicle_price = vehicle_price+400
             print(f"Age | Young Driver Premium | {vehicle_price}")
         # Add modifier for No claims
         vehicle_price = vehicle_price * self.get_ncb_modifier()
-        print(f"No claim bonus |  {self.get_ncb_modifier()} | {vehicle_price}")
+        print(f"No claim bonus | {self.get_ncb_modifier()}  | {vehicle_price}")
         # Add modifier for penalty points
         vehicle_price = vehicle_price * self.get_pen_points_modifier()
-        print(f"Penalty points | {self.get_pen_points_modifier()} | "
+        print(f"Penalty points | {self.get_pen_points_modifier()}  | "
               f"{vehicle_price}")
         print("")
         return round(vehicle_price, 2)
@@ -116,16 +118,16 @@ class Vehicle:
         Function to calculate the total cost of the vehicle price,
         including year and engine size.
         """
-        print("Tag | Modifier | Price")
+        print("Category Tag   |  %   | Price")
         # Determine base price from Vehicle Type
         base_price = self.get_base_price()
-        print(f"Base | 0.00 | {(base_price)}")
+        print(f"Vehicle Base   | 0.00 | {(base_price)}")
         # Add engine size price % modifier
         base_price = base_price * self.get_cc_modifier()
-        print(f"Engine capacity | {self.get_cc_modifier()} | {base_price}")
+        print(f"Engine size    | {self.get_cc_modifier()} | {base_price}")
         # Add vehicle Year mondifier
         base_price = base_price * self.get_age_modifier()
-        print(f"Year | {self.get_age_modifier()} | {base_price}")
+        print(f"Vehicle Year   | {self.get_age_modifier()}    | {base_price}")
         return base_price
 
     def get_base_price(self):
@@ -248,11 +250,18 @@ def validate_input_details(valid_details, message):
     user_input = 0
     while valid_input is False:
         user_input = input(message)
-        for details in valid_details:
-            if details == int(user_input):
-                valid_input = True
-                return user_input
-        print("Invalid input! please try again.")
+        try:
+            if len(str(user_input).strip()) == 0:
+                valid_input = False
+                print("Please input")
+            elif user_input == str(user_input):
+                valid_input = False
+            for details in valid_details:
+                if int(details) == int(user_input):
+                    valid_input = True
+        except ValueError:
+            print("Enter a number")
+    return user_input
 
 
 def details_validation_int(message):
